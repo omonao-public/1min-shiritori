@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.709.0.min.js"></script>
+    <script src="./main.js"></script>
+    <script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/rollups/sha256.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
+    <script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
+    <script type="text/javascript" src="lib/url-template/url-template.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
+    <script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
+    <script type="text/javascript" src="apigClient.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1minute絵しりとり</title>
+
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="続けてしりとりしてみよう！">
+    <meta property="og:title" content="1minute絵しりとり">
+    <meta property="og:url" content="https://shiritori.site">
+    <meta property="og:image" content="http://shiritori.site/png/d749c69549a3416c57ec061adf7da2de3382368adaf96c6d3bfde83784b34819.png">
+    <meta property="og:site_title" content="サイト名">
+    <script data-ad-client="ca-pub-7023371499419356" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width: 500px; margin-right:auto; margin-left:auto;">
+        <img class="disp-block blockcenter" id="title_img" src="title.png" alt="title" />
+        <h1 id="img-prev-txt">前の絵</h1>
+        <img id="img-prev" width="200" height="200">
+        <br>
+        <input type="text" name="NAME" id="name-txt" value="名無し">
+        <br>
+        <font size="2"><a href="../licence.html">利用規約</a>に同意して</font>
+        <br>
+        <input type="button" id="start-button" value="しりとりする！">
+        <div id="palette-area">
+            <canvas id="draw-area" width="100" height="100" style="border: 1px solid #000000;"></canvas>
+            <div id="palette">
+                <div>
+                    <canvas id="color-palette" width="20" height="20" style="border: 1px solid #000000;"></canvas>
+                    <div>
+                        <input type="button" id="palette-black" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: black; width: 10px; height: 10px; padding: 8px;" />
+                        <input type="button" id="palette-red" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: red; width: 10px; height: 10px; padding: 8px;" />
+                        <input type="button" id="palette-blue" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: blue; width: 10px; height: 10px; padding: 8px;" />
+                        <input type="button" id="palette-green" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: green; width: 10px; height: 10px; padding: 8px;" />
+                    </div>
+                    <div>
+                        <input type="button" id="palette-yellow" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: yellow; width: 10px; height: 10px; padding: 8px;" />
+                        <input type="button" id="palette-orange" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: orange; width: 10px; height: 10px; padding: 8px;" />
+                        <input type="button" id="palette-pink" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: pink; width: 10px; height: 10px; padding: 8px;" />
+                        <input type="button" id="palette-brown" class="palette"
+                            style="position: relative; left: 0px; top: 0px; background-color: brown; width: 10px; height: 10px; padding: 8px;" />
+                    </div>
+                    <div>
+                        <input type="button" id="clear-button" style="position: relative; left: 0px; top: 0px;"
+                            value="やり直し" disabled="true" />
+                        <input type="button" id="eraser-button" style="position: relative; left: 0px; top: 0px;"
+                            value="消しゴムモードに切り替え" />
+                    </div>
+                </div>
+                <h1 id="counter" style="position: relative; left: 0px; top: 0px;">60</h1>
+            </div>
+            <input type="button" id="finish-button" value="完成" disabled="true">
+        </div>
+        <input type="text" name="out" id="out-text" disabled="true">
+        <input type="button" id="copy-button" value="クリップボードにコピー">
+        <div id="tweet-area">
+            <!-- ここにボタンができる-->
+        </div>
+    </div>
+</body>
+
+</html>
